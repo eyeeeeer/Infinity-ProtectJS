@@ -1,5 +1,4 @@
 const { MessageEmbed, Client, Collection, Intents } = require("discord.js");
-const keep_alive = require('./keep-alive.js')
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_BANS, Intents.FLAGS.GUILD_WEBHOOKS]
 });
