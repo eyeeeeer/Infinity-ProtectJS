@@ -1,6 +1,4 @@
 const mongoose = require('mongoose')
-require('mongoose-long')(mongoose);
-const {Types: {Long}} = mongoose
 
 //let con = mongoose.connect('mongodb+srv://admin:analforzel@cluster0.klsbg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
