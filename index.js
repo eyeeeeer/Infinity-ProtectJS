@@ -130,5 +130,5 @@ client.on("ready", async () => {
 
 
 console.log('Бот запускается...')
-client.login(process.env.token)
+client.login('OTY0NTA0NzQxMjIyNjc4NTc5.Gr9ajb.Ij0EjTZR1yX5gyKJPwjoF1fTl_sb4QDYX55E8g')
 console.log('какого хрена') //rate limits //а ошибка где //nety // за два часа должно было пофиксится //такое уже было, ждём
