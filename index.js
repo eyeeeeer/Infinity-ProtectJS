@@ -14,9 +14,6 @@ const yaml = require('js-yaml');
 
 const discordModals = require('discord-modals');
 
-const config = yaml.load(fs.readFileSync('./config.yml', 'utf8'));
-client.config = config
-
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
