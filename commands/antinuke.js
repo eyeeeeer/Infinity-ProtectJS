@@ -20,7 +20,7 @@ module.exports = {
       return interaction.reply({embeds: [f.aembed("Ошибка", 'Вы не являетесь владельцем сервера', f.colors.default)]})
 }
     let toggled = interaction.options.getBoolean('toggle') //|| true
-     await configs.findOneAndUpdate({ _id: parseInt(interaction.guild.id)}, {
+     await configs.findOneAndUpdate({ _id: interaction.guild.id}, {
           antiNuke: toggled,
            //яе ему не нравится??
      })// там схему можно только один раз обьявлять
@@ -34,6 +34,6 @@ module.exports = {
     
 		
       
-		return interaction.reply({embeds: [f.aembed("Успешно", `Теперь антикраш **${toggled}**`, f.colors.default)]}); //ага хд
+		return interaction.reply({embeds: [f.aembed("ошибка", 'Команда больше не актуальна', f.colors.default)]}); //ага хд
 	},
 };

@@ -16,9 +16,12 @@ var guildSchema = new mongoose.Schema({
     roleCreate: {count: Number, mode: Boolean},
     roleUpdate: {count: Number, mode: Boolean},
     webhookCreate: {count: Number, mode: Boolean},
+    membersBan: {count: Number, mode: Boolean}, 
+    membersKick: {count: Number, mode: Boolean},
     blockNewAccounts: Boolean,
     blockNewAccountsTime: String,
-    wl: [ String ]
+    wl: [ String ],
+    
 });
 
 

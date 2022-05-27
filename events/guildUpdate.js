@@ -5,6 +5,6 @@ module.exports = {
     name: 'guildUpdate',
     once: false,
     async execute(oldGuild, newGuild) {
-    
+      
     }
 }

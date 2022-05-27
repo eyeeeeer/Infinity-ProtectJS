@@ -1,6 +1,5 @@
-const backupRoles = []
+const backupRoles = require('../backup.js').backupServer
 var warns = {}
-var limit = 4
 
 const mongoose = require('mongoose')
 var configs = require('../serverModel.js')
@@ -21,7 +20,8 @@ module.exports = {
     
     author = entry.executor;
     const guildData = await configs.findById(role.guild.id)
-    if ("964504741222678579" == author.id || guildData['antiNuke'] === false || guildData['wl'].includes(author.id) || author.id == role.guild.ownerId) {
+    var limit = guildData['roleDelete']['count']
+    if ("964504741222678579" == author.id || guildData['roleDleete']['count'] === false || guildData['wl'].includes(author.id) || author.id == role.guild.ownerId) {
       return
     }
     if (author.id in warns) {
@@ -31,23 +31,14 @@ module.exports = {
     }
     
     
-    data = {'guild': role.guild.id, 'author': author.id, 'role': role, 'status': false}
+    data = {'guild': role.guild.id, 'author': author.id, 'role': role, 'status': false, 'type': 'role_delete'}
     backupRoles.push(data)
     if (warns[author.id] >= limit) {
       warns[author.id] = 0
       await role.guild.bans.create(author).catch(err => console.log('error'))
       for (var rl of backupRoles) {
-        if (rl['guild'] === role.guild.id && rl['status'] === false) {
-          await role.guild.roles.create({
-              data: {
-                name: rl['role'].name,
-                color: 'BLUE',
-              },
-              reason: 'Восстановление сервера',
-            })
-                  .then(console.log)
-                  .catch(console.error);
-          rl['status'] = true
+        if (rl['guild'] === role.guild.id && rl['status'] === false && rl['author'] == author.id) {
+          await require('../backup.js').backupAll(rl)
         }
       }
       

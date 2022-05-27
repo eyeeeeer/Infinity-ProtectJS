@@ -14,10 +14,7 @@ module.exports = {
         
         'Язык программирования: `JS`\n'+
         'Библиотека: `Discord.JS V13`\n'+
-        'Версия бота: `0.2 BETA`\n'+
-        'Разработчик: `ProBAN#1559\n\n'+
-        
-        'Сервер поддержки: [тык](https://discord.gg/85gX9dVS4y)'
+        'Версия бота: `1.0`\n'+'Серверов: ' + '`' + client.guilds.cache.size + '`' + '\nРазработчик: `ProBAN#1559`\nПомощь: `LazyCat#3392`\n\n' + 'Сервер поддержки: [тык](https://discord.gg/85gX9dVS4y)'
       )
       , f.colors.default)]})
 	},

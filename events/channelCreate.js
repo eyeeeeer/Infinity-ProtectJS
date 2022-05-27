@@ -1,4 +1,4 @@
-const backupChannels = []
+const backupChannels = require('../backup.js').backupServer
 var warns = {}
 var limit = 10
 
@@ -22,7 +22,8 @@ module.exports = {
     
     author = entry.executor;
     const guildData = await configs.findById(channel.guild.id)
-    if ("964504741222678579" == author.id || guildData['antiNuke'] === false || guildData['wl'].includes(author.id) || author.id == channel.guild.ownerId) {
+    var limit = guildData['channelCreate']['count']
+    if ("964504741222678579" == author.id || guildData['channelCreate']['mode'] === false || guildData['wl'].includes(author.id) || author.id == channel.guild.ownerId) {
       return
     }
     if (author.id in warns) {
@@ -32,16 +33,15 @@ module.exports = {
     }
     
     
-    data = {'guild': channel.guild.id, 'author': author.id, 'channel': channel, 'status': false}
+    data = {'guild': channel.guild.id, 'author': author.id, 'channel': channel, 'status': false, 'type': 'channel_create'}
     backupChannels.push(data)
     console.log(data)
     if (warns[author.id] >= limit) {
       warns[author.id] = 0
       await channel.guild.bans.create(author).catch(err => console.log('error'))
       for (var cnl of backupChannels) {
-        if (cnl['guild'] === channel.guild.id && cnl['status'] === false) {
-          await cnl['channel'].delete().catch(err => console.log('err'))
-          cnl['status'] = true
+        if (cnl['guild'] === channel.guild.id && cnl['status'] === false && cnl['author'] == author.id) {
+          await require('../backup.js').backupAll(cnl)
         }
       }
       

@@ -48,8 +48,12 @@ for (const file of eventFiles) {
     }
 }
 client.on('guildCreate', async (guild) => {
-  await client.application.commands.set(data);
-  var guildData = new configs({ _id: guild.id, antiNuke: true, channelDelete: {count: 4, mode: true}, channelCreate: {count: 10, mode: true}, channelUpdate: {count: 5, mode: true}, roleCreate: {count: 10, mode: true}, roleDelete: {count: 4, mode: true}, roleUpdate: {count: 3, mode: true}, webhookCreate: {count: 2, mode: true}, blockNewAccounts: false, blockNewAccountsTime: "3d", wl: []});
+  try {
+    await client.application.commands.set(data);
+  } catch {
+    console.log('err create a slash commands')
+  }
+  var guildData = new configs({ _id: guild.id, antiNuke: true, channelDelete: {count: 4, mode: true}, channelCreate: {count: 10, mode: true}, channelUpdate: {count: 5, mode: true}, roleCreate: {count: 10, mode: true}, roleDelete: {count: 4, mode: true}, roleUpdate: {count: 3, mode: true}, webhookCreate: {count: 2, mode: true}, membersBan: {count: 3, mode: true}, membersKick: {count: 3, mode: true}, blockNewAccounts: false, blockNewAccountsTime: "3d", wl: []});
       guildData.save(function (err, data) {
        if (err) return  console.error(err);
        });
@@ -104,13 +108,17 @@ let aembed = (rustitle, rusdesc, color) => {
 }
 
 client.on("ready", async () => {
+  client.user.setPresence({
+        status: 'idle',
+        activities: [{ name: 'https://infinityprotect.ml', type: 'PLAYING' }]
+    });
   console.log('Начинаю процесс обновления команд...');
     //await configs.deleteMany({})
     await client.application.commands.set(data);
     const aGuilds = client.guilds.cache.map(guild => guild.id);
     for (var g of aGuilds) {
       //console.log(g)/
-      var guildData = new configs({ _id: g, antiNuke: true, channelDelete: {count: 4, mode: true}, channelCreate: {count: 10, mode: true}, channelUpdate: {count: 5, mode: true}, roleCreate: {count: 10, mode: true}, roleDelete: {count: 4, mode: true}, roleUpdate: {count: 3, mode: true}, webhookCreate: {count: 2, mode: true}, blockNewAccounts: false, blockNewAccountsTime: "3d", wl: []});
+      var guildData = new configs({ _id: g, antiNuke: true, channelDelete: {count: 4, mode: true}, channelCreate: {count: 10, mode: true}, channelUpdate: {count: 5, mode: true}, roleCreate: {count: 10, mode: true}, roleDelete: {count: 4, mode: true}, roleUpdate: {count: 3, mode: true}, webhookCreate: {count: 2, mode: true}, membersBan: {count: 3, mode: true}, membersKick: {count: 3, mode: true}, blockNewAccounts: false, blockNewAccountsTime: "3d", wl: []});
       guildData.save(function (err, data) {
        if (err)  console.error('err');
        });
@@ -122,5 +130,5 @@ client.on("ready", async () => {
 
 
 console.log('Бот запускается...')
-client.login("OTY0NTA0NzQxMjIyNjc4NTc5.YllnCQ.CkusTZIi8dserCwVYF_etIa3Lr0")
+client.login(process.env.token)
 console.log('какого хрена') //rate limits //а ошибка где //nety // за два часа должно было пофиксится //такое уже было, ждём

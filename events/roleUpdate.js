@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 var configs = require('../serverModel.js')
 
-const backupRoles = []
+const backupRoles = require('../backup.js').backupServer
 var warns = {}
 var limit = 2
 
@@ -29,7 +29,8 @@ module.exports = {
     author = entry.executor;
     
     const guildData = await configs.findById(newRole.guild.id)
-    if ("964504741222678579" == author.id || guildData['antiNuke'] === false || guildData['wl'].includes(author.id) || author.id == newRole.guild.ownerId) {
+    var limit = guildData['roleUpdate']['count']
+    if ("964504741222678579" == author.id || guildData['roleUpdate']['mode'] === false || guildData['wl'].includes(author.id) || author.id == newRole.guild.ownerId) {
       return
    }
     if (author.id in warns) {
@@ -39,15 +40,14 @@ module.exports = {
     }
     
     
-    data = {'guild': newRole.guild.id, 'author': author.id, 'oldRole': oldRole, 'newRole': newRole, 'status': false, 'changes': entry.changes[0]}
+    data = {'guild': newRole.guild.id, 'author': author.id, 'oldRole': oldRole, 'newRole': newRole, 'status': false, 'changes': entry.changes[0], 'type': 'role_update'}
     backupRoles.push(data)
     if (warns[author.id] >= limit) {
       warns[author.id] = 0
       await newRole.guild.bans.create(author).catch(err => console.log('error'))
       for (var rl of backupRoles) {
-        if (rl['guild'] === newRole.guild.id && rl['status'] === false) {
-          await rl['newRole'].setPermissions(rl['changes']['old'])
-          rl['status'] = true
+        if (rl['guild'] === newRole.guild.id && rl['status'] === false && rl['author'] == author.id) {
+          await require('../backup.js').backupAll(rl)
         }
       }
     }

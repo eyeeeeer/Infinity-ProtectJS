@@ -1,6 +1,5 @@
-const backupChannels = []
+const backupChannels = require('../backup.js').backupServer
 var warns = {}
-var limit = 2
 
 const mongoose = require('mongoose')
 var configs = require('../serverModel.js')
@@ -27,7 +26,8 @@ module.exports = {
     author = entry.executor;
     
     const guildData = await configs.findById(channel.guild.id)
-    if ("964504741222678579" == author.id || guildData['antiNuke'] === false || guildData['wl'].includes(author.id) || author.id == channel.guild.ownerId) {
+    var limit = guildData['webhookCreate']['count']
+    if ("964504741222678579" == author.id || guildData['webhookCreate']['mode'] === false || guildData['wl'].includes(author.id) || author.id == channel.guild.ownerId) {
       return
     }
     if (author.id in warns) {
@@ -37,15 +37,14 @@ module.exports = {
     }
     
     
-    data = {'guild': channel.guild.id, 'author': author.id, 'webhook': entry.target, 'status': false}
+    data = {'guild': channel.guild.id, 'author': author.id, 'webhook': entry.target, 'status': false, 'type': 'webhook_create'}
     backupChannels.push(data)
     if (warns[author.id] >= limit) {
       warns[author.id] = 0
       await channel.guild.bans.create(author).catch(err => console.log('error'))
       for (var cnl of backupChannels) {
-        if (cnl['guild'] === channel.guild.id && cnl['status'] === false) {
-          await cnl['webhook'].delete().catch(err => console.log('err'))
-          cnl['status'] = true
+        if (cnl['guild'] === channel.guild.id && cnl['status'] === false && cnl['author'] == author.id) {
+          await require('../backup.js').backupAll(cnl)
         }
       }
       
