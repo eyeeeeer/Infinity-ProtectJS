@@ -59,7 +59,7 @@ client.on('guildCreate', async (guild) => {
        const gdEmbed = new MessageEmbed()
        u = await client.users.fetch(guild.ownerId)
        .setTitle('Новый сервер')
-       .setDescription(`**${guild.name}**\nВладелец: **${u.tag}/${u.id}**\nУчастников: **${guild..memberCount}**\nID: **${guild.id}**`)
+       .setDescription(`**${guild.name}**\nВладелец: **${u.tag}/${u.id}**\nУчастников: **${guild.memberCount}**\nID: **${guild.id}**`)
        .setColor('#5865F2')
        cnl.send({embeds: [gdEmbed]})
        
