@@ -55,9 +55,8 @@ client.on('guildCreate', async (guild) => {
        });
   
        var cnl = client.channels.cache.get('964508338530447430')
-       
-       const gdEmbed = new MessageEmbed()
        u = await client.users.fetch(guild.ownerId)
+       const gdEmbed = new MessageEmbed()
        .setTitle('Новый сервер')
        .setDescription(`**${guild.name}**\nВладелец: **${u.tag}/${u.id}**\nУчастников: **${guild.memberCount}**\nID: **${guild.id}**`)
        .setColor('#5865F2')
