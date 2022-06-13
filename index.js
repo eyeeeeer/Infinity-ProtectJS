@@ -126,4 +126,4 @@ client.on("ready", async () => {
 
 
 
-client.login('OTY0NTA0NzQxMjIyNjc4NTc5.Gwcne-.zvPppJ1i7rkbTPMITDeExG15BrSu5iKey6tsZs')
+client.login('OTY0NTA0NzQxMjIyNjc4NTc5.GAYz9Z.73_fCm74qe_Upf_F57lSpyIn03roArsBLdC3l4')
