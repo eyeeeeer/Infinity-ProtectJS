@@ -24,8 +24,8 @@ module.exports = {
           'mode': status,
           
       })
-    var y = status
-    if (y == "false") {
+    var y = ""
+    if (status == false) {
        y = ":green_circle: **открыт**"
     } else {
       y = ":red_circle: **закрыт**"
