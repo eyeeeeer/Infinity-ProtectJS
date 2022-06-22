@@ -4,7 +4,6 @@ var configs = require('../serverModel.js')
 const backupChannels = require('../backup.js').backupServer
 var warns = {}
 
-mongoose.connect('mongodb+srv://admin:analforzel@cluster0.klsbg.mongodb.net/InfinityProtect?retryWrites=true&w=majority');
 module.exports = {
     name: 'channelUpdate',
     once: false,
@@ -26,7 +25,7 @@ module.exports = {
     
     const guildData = await configs.findById(newChannel.guild.id)
     var limit = guildData['channelUpdate']['count']
-    if ("964504741222678579" == author.id || guildData['channelUpdate']['mode'] === false || guildData['wl'].includes(author.id) || author.id == newChannel.guild.ownerId) {
+    if (require('../backup.js').botId == author.id || guildData['channelUpdate']['mode'] === false || guildData['wl'].includes(author.id) || author.id == newChannel.guild.ownerId) {
       return
     }
     if (author.id in warns) {
@@ -79,7 +78,7 @@ module.exports = {
     
     const guildData = await configs.findById(newChannel.guild.id)
     var limit = guildData['channelUpdate']['count']
-    if ("959505571277582447" == author.id || guildData['channelUpdate']['mode'] === false || guildData['wl'].includes(author.id) || author.id == newChannel.guild.ownerId) {
+    if (require('../backup.js').botId == author.id || guildData['channelUpdate']['mode'] === false || guildData['wl'].includes(author.id) || author.id == newChannel.guild.ownerId) {
       return
     }
     if (author.id in warns) {

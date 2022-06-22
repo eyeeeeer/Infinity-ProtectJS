@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 var configs = require('../serverModel.js')
-mongoose.connect('mongodb+srv://admin:analforzel@cluster0.klsbg.mongodb.net/InfinityProtect?retryWrites=true&w=majority');
+
 
 var warns = {}
 
@@ -21,7 +21,7 @@ module.exports = {
     author = entry.executor;
     var limit = guildData['membersKick']['count']
     const guildData = await configs.findById(member.guild.id)
-    if ("964504741222678579" == author.id || guildData['membersKick']['count'] || guildData['wl'].includes(author.id) || author.id == member.guild.ownerId) {
+    if (require('../backup.js').botId == author.id || guildData['membersKick']['count'] || guildData['wl'].includes(author.id) || author.id == member.guild.ownerId) {
       return
     }
     if (author.id in warns) {

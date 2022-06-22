@@ -1,6 +1,5 @@
 const backupChannels = require('../backup.js').backupServer
 var warns = {}
-var limit = 10
 
 const mongoose = require('mongoose')
 var configs = require('../serverModel.js')
@@ -23,7 +22,7 @@ module.exports = {
     author = entry.executor;
     const guildData = await configs.findById(channel.guild.id)
     var limit = guildData['channelCreate']['count']
-    if ("964504741222678579" == author.id || guildData['channelCreate']['mode'] === false || guildData['wl'].includes(author.id) || author.id == channel.guild.ownerId) {
+    if (require('../backup.js').botId == author.id || guildData['channelCreate']['mode'] === false || guildData['wl'].includes(author.id) || author.id == channel.guild.ownerId) {
       return
     }
     if (author.id in warns) {

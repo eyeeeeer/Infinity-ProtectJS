@@ -3,7 +3,7 @@ var warns = {}
 
 const mongoose = require('mongoose')
 var configs = require('../serverModel.js')
-mongoose.connect('mongodb+srv://admin:analforzel@cluster0.klsbg.mongodb.net/InfinityProtect?retryWrites=true&w=majority');
+
 module.exports = {
     name: 'guildBanAdd',
     once: false,
@@ -18,7 +18,7 @@ module.exports = {
     author = entry.executor;
     const guildData = await configs.findById(ban.guild.id)
     var limit = guildData['membersBan']['count']
-    if ("964504741222678579" == author.id || guildData['membersBan']['mode'] === false || guildData['wl'].includes(author.id) || author.id == ban.guild.ownerId) {
+    if (require('../backup.js').botId == author.id || guildData['membersBan']['mode'] === false || guildData['wl'].includes(author.id) || author.id == ban.guild.ownerId) {
       return
     }
     if (author.id in warns) {

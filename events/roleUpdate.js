@@ -3,9 +3,9 @@ var configs = require('../serverModel.js')
 
 const backupRoles = require('../backup.js').backupServer
 var warns = {}
-var limit = 2
 
-mongoose.connect('mongodb+srv://admin:analforzel@cluster0.klsbg.mongodb.net/InfinityProtect?retryWrites=true&w=majority')
+
+
 module.exports = {
     name: 'roleUpdate',
     once: false,
@@ -30,7 +30,7 @@ module.exports = {
     
     const guildData = await configs.findById(newRole.guild.id)
     var limit = guildData['roleUpdate']['count']
-    if ("964504741222678579" == author.id || guildData['roleUpdate']['mode'] === false || guildData['wl'].includes(author.id) || author.id == newRole.guild.ownerId) {
+    if (require('../backup.js').botId == author.id || guildData['roleUpdate']['mode'] === false || guildData['wl'].includes(author.id) || author.id == newRole.guild.ownerId) {
       return
    }
     if (author.id in warns) {

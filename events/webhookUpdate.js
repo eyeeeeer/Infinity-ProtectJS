@@ -3,13 +3,11 @@ var warns = {}
 
 const mongoose = require('mongoose')
 var configs = require('../serverModel.js')
-mongoose.connect('mongodb+srv://admin:analforzel@cluster0.klsbg.mongodb.net/InfinityProtect?retryWrites=true&w=majority')
+
 module.exports = {
     name: 'webhookUpdate',
     once: false,
     async execute(channel) {
-    //console.log('t')
-    //const channelDeleteId = channel.id;
     try {
     const log = await channel.guild.fetchAuditLogs({type: 'WEBHOOK_CREATE'})
 
@@ -27,7 +25,7 @@ module.exports = {
     
     const guildData = await configs.findById(channel.guild.id)
     var limit = guildData['webhookCreate']['count']
-    if ("964504741222678579" == author.id || guildData['webhookCreate']['mode'] === false || guildData['wl'].includes(author.id) || author.id == channel.guild.ownerId) {
+    if (require('../backup.js').botId == author.id || guildData['webhookCreate']['mode'] === false || guildData['wl'].includes(author.id) || author.id == channel.guild.ownerId) {
       return
     }
     if (author.id in warns) {

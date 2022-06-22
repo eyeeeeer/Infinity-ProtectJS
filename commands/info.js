@@ -14,8 +14,7 @@ module.exports = {
         
         'Язык программирования: `JS`\n'+
         'Библиотека: `Discord.JS V13`\n'+
-        'Версия бота: `1.0`\n'+'Серверов: ' + '`' + client.guilds.cache.size + '`' + '\nРазработчик: `ProBAN#1559`\nПомощь: `LazyCat#3392`\n\n' + 'Сервер поддержки: [тык](https://discord.gg/85gX9dVS4y)'
-      )
-      , f.colors.default)]})
+        'Версия бота: `1.1`\n'+'Серверов: ' + '`' + client.guilds.cache.size + '`' + '\nРазработчик: `ProBAN#1559`\nВладелец: [CryoDry](https://discord.gg/wQQB4Rm9Q4)\n\n' + 'Сервер поддержки: [тык](https://discord.gg/85gX9dVS4y)'
+      ), f.colors.default)]})
 	},
 };

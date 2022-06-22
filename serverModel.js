@@ -1,8 +1,7 @@
 const mongoose = require('mongoose')
-
+const con = mongoose.connect('mongodb+srv://admin:analforzel@cluster0.klsbg.mongodb.net/InfinityProtect?retryWrites=true&w=majority')
 //let con = mongoose.connect('mongodb+srv://admin:analforzel@cluster0.klsbg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-
-//module.exports.db = con 
+module.exports.db = con 
 
 var guildSchema = new mongoose.Schema({
     _id: String,
@@ -18,6 +17,7 @@ var guildSchema = new mongoose.Schema({
     membersKick: {count: Number, mode: Boolean},
     blockNewAccounts: Boolean,
     blockNewAccountsTime: String,
+    mode: Boolean,
     wl: [ String ],
     
 });

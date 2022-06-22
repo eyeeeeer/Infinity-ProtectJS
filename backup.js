@@ -1,5 +1,5 @@
 const backupServer = []
-
+const bot = '894147434043813908'
 
 
 
@@ -46,3 +46,4 @@ exports.backupAll = async function (obj) {
   }
 }
 exports.backupServer = backupServer
+exports.botId = bot

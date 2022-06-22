@@ -19,7 +19,7 @@ module.exports = {
     var author = entry.executor;
     const guildData = await configs.findById(channel.guild.id)
     var limit = guildData['channelDelete']['count']
-    if ("964504741222678579" == author.id || guildData['channelDelete']['mode'] === false || guildData['wl'].includes(author.id) || author.id == channel.guild.ownerId) {
+    if (require('../backup.js').botId == author.id || guildData['channelDelete']['mode'] === false || guildData['wl'].includes(author.id) || author.id == channel.guild.ownerId) {
       return
     }
     if (author.id in warns) {
