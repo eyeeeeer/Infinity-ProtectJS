@@ -1,5 +1,5 @@
 const backupServer = []
-const bot = '894147434043813908'
+const bot = '964504741222678579'
 
 
 
