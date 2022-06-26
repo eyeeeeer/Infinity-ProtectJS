@@ -144,4 +144,4 @@ client.on("ready", async () => {
 
 
 
-client.login('OTY0NTA0NzQxMjIyNjc4NTc5.GnldBP.YAeEZYJpnjHghkD2298_qDmvAhihQbbQVvMywo')
+client.login('OTY0NTA0NzQxMjIyNjc4NTc5.G_ro9W.TgdDHPRJxQQvV7A0UlZCXXNs-a2QfekeibB700')
