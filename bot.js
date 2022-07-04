@@ -7,6 +7,7 @@ const client = new Client({
 const fs = require('node:fs')
 const mongoose = require('mongoose')
 var configs = require('./serverModel.js')
+const banCollection = require('./banModel.js')
 mongoose.connect('mongodb+srv://admin:analforzel@cluster0.klsbg.mongodb.net/InfinityProtect?retryWrites=true&w=majority')
 
 
@@ -64,6 +65,9 @@ client.on('guildCreate', async (guild) => {
 
 
 })
+
+
+
 
 client.on('guildMemberAdd', async (member) => {
   const guildData = await configs.findById(member.guild.id)
@@ -139,9 +143,32 @@ client.on("ready", async () => {
 
 });
 
+async function bansTimer() {
+  var bansData = await banCollection.find()
+  var now = Math.floor(Date.now() / 1000)
+  for (var ban of bansData) {
+    if (now >= parseInt(ban['banDuration'])) {
+      var guild = client.guilds.cache.find(guild => guild.id == ban['guildId'])
+      guild.members.unban(ban['memberId']).catch(e => console.log(e))
+      await banCollection.deleteOne({
+        memberId: ban['memberId'],
+        guildId: ban['guildId']
+      })
+    }
+    var guild = client.guilds.cache.find(guild => guild.id == ban['guildId'])
+    bnd = guild.bans.fetch()
+    if (bnd) {
+    banned = guild.bans.fetch(ban['memberId']).catch(async (e) => {
+      await banCollection.deleteOne({
+        memberId: ban['memberId'],
+        guildId: ban['guildId']
+      })
+    })
+    }
+  }
+}
+var unban = setInterval(bansTimer, 6000)
 
 
 
-
-
-client.login('OTY0NTA0NzQxMjIyNjc4NTc5.G_ro9W.TgdDHPRJxQQvV7A0UlZCXXNs-a2QfekeibB700')
+client.login(process.env.token)

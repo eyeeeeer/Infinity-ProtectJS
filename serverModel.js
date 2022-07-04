@@ -23,4 +23,6 @@ var guildSchema = new mongoose.Schema({
 });
 
 
+
+
 module.exports = mongoose.model("configs", guildSchema);
