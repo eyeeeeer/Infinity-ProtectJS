@@ -156,6 +156,7 @@ async function bansTimer() {
       })
     }
     var guild = client.guilds.cache.find(guild => guild.id == ban['guildId'])
+    try {
     bnd = guild.bans.fetch()
     if (bnd) {
     banned = guild.bans.fetch(ban['memberId']).catch(async (e) => {
@@ -165,6 +166,9 @@ async function bansTimer() {
       })
     })
     }
+   } catch(e) {
+       console.log(e)
+}
   }
 }
 var unban = setInterval(bansTimer, 6000)
