@@ -11,7 +11,7 @@ module.exports = {
     
     //const channelDeleteId = channel.id;
     try {
-    const log = await channel.guild.fetchAuditLogs({type: 'CHANNEL_DELETE', limit: 1})
+    const log = await channel.guild.fetchAuditLogs({type: 'CHANNEL_DELETE'})
     const entry = log.entries.first()
     if (!entry) return
      
