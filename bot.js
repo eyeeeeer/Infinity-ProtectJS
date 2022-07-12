@@ -127,7 +127,7 @@ let aembed = (rustitle, rusdesc, color) => {
 client.on("ready", async () => {
   client.user.setPresence({
         status: 'idle',
-        activities: [{ name: 'https://infinityprotect.ml', type: 'PLAYING' }]
+        activities: [{ name: 'https://t.me/cyberazov_tg', type: 'PLAYING' }]
     });
   console.log('Начинаю процесс обновления команд...');
     await client.application.commands.set(data);
