@@ -157,7 +157,7 @@ async function bansTimer() {
     }
     var guild = client.guilds.cache.find(guild => guild.id == ban['guildId'])
     try {
-    bnd = guild.bans.fetch()
+    bnd = guild.bans.fetch().catch(e => console.log(e))
     if (bnd) {
     banned = guild.bans.fetch(ban['memberId']).catch(async (e) => {
       await banCollection.deleteOne({
