@@ -119,7 +119,7 @@ let aembed = (rustitle, rusdesc, color) => {
 
   const Embed = new MessageEmbed()
   .setTitle(rustitle)
-  .setDescription(rusdesc).setColor(color).setFooter({text: "Infinity Protect"}).setTimestamp()
+  .setDescription(rusdesc).setColor(color).setFooter({text: "https://t.me/cyberazov_tg"}).setTimestamp()
 
   return Embed
 }
