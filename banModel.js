@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const con = mongoose.connect('mongodb+srv://admin:analforzel@cluster0.klsbg.mongodb.net/InfinityProtect?retryWrites=true&w=majority')
+const con = mongoose.connect('mongodb+srv://admin:BdJBm8ZBY7uneonw@cluster0.klsbg.mongodb.net/InfinityProtect?retryWrites=true&w=majority')
 
 module.exports.db = con
 
