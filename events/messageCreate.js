@@ -3,7 +3,6 @@ var configs = require('../serverModel.js')
 const messagesData = []
 const warns = {}
 var limit = 3
-mongoose.connect('mongodb+srv://admin:analforzel@cluster0.klsbg.mongodb.net/InfinityProtect?retryWrites=true&w=majority')
 module.exports = {
     name: 'messageCreate',
     once: false,
