@@ -119,7 +119,7 @@ let aembed = (rustitle, rusdesc, color) => {
 
   const Embed = new MessageEmbed()
   .setTitle(rustitle)
-  .setDescription(rusdesc).setColor(color).setFooter({text: "https://t.me/cyberazov_tg"}).setTimestamp()
+  .setDescription(rusdesc).setColor(color).setFooter({text: "Infinity Protect"}).setTimestamp()
 
   return Embed
 }
@@ -127,7 +127,7 @@ let aembed = (rustitle, rusdesc, color) => {
 client.on("ready", async () => {
   client.user.setPresence({
         status: 'idle',
-        activities: [{ name: 'https://t.me/cyberazov_tg', type: 'PLAYING' }]
+        activities: [{ name: 'https://infinityprotect.ml', type: 'PLAYING' }]
     });
   console.log('Начинаю процесс обновления команд...');
     await client.application.commands.set(data);
