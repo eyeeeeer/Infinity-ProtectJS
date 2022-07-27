@@ -174,7 +174,7 @@ async function bansTimer() {
 }
   }
 }
-var unban = setInterval(bansTimer, 6000)
+var unban = setInterval(bansTimer, 60000)
 
 
 
