@@ -8,7 +8,7 @@ const fs = require('node:fs')
 const mongoose = require('mongoose')
 var configs = require('./serverModel.js')
 const banCollection = require('./banModel.js')
-mongoose.connect('mongodb+srv://admin:BdJBm8ZBY7uneonw@cluster0.klsbg.mongodb.net/InfinityProtect?retryWrites=true&w=majority')
+mongoose.connect('')
 
 
 
